@@ -12,48 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//! bigdecimal benchmark
+//! decimal-rs benchmark
 
 use bencher::{black_box, Bencher};
-use bigdecimal::{BigDecimal, ParseBigDecimalError};
-use num_traits::ToPrimitive;
-use std::convert::TryInto;
+use decimal_rs::Decimal;
 
 #[inline(always)]
-fn parse(s: &str) -> BigDecimal {
+fn parse(s: &str) -> Decimal {
     s.parse().unwrap()
 }
 
-pub fn bigdecimal_parse(bench: &mut Bencher) {
+pub fn decimal_rs_parse(bench: &mut Bencher) {
     bench.iter(|| {
         let _n = parse(black_box("12345678901.23456789"));
     })
 }
 
-pub fn bigdecimal_into_f64(bench: &mut Bencher) {
-    let val = parse("12345678901.23456789");
-    bench.iter(|| {
-        let _n: f64 = black_box(&val).to_f64().unwrap();
-    })
-}
+// #[inline(always)]
+// fn try_from<T: TryInto<Decimal, Error = DecimalConvertError>>(val: T) -> Decimal {
+//     val.try_into().unwrap()
+// }
+//
+// fn decimal_rs_from_f64(bench: &mut Bencher) {
+//     bench.iter(|| {
+//         let _n = try_from(black_box(12345678901.23456789_f64));
+//     })
+// }
 
 #[inline(always)]
-fn try_from<T: TryInto<BigDecimal, Error = ParseBigDecimalError>>(val: T) -> BigDecimal {
-    val.try_into().unwrap()
+fn add(x: &Decimal, y: &Decimal) -> Decimal {
+    *x + *y
 }
 
-pub fn bigdecimal_from_f64(bench: &mut Bencher) {
-    bench.iter(|| {
-        let _n = try_from(black_box(12345678901.23456789_f64));
-    })
-}
-
-#[inline(always)]
-fn add(x: &BigDecimal, y: &BigDecimal) -> BigDecimal {
-    x + y
-}
-
-pub fn bigdecimal_add(bench: &mut Bencher) {
+pub fn decimal_rs_add(bench: &mut Bencher) {
     let x = parse("12345678901.23456789");
     let y = parse("123456.7890123456789");
     bench.iter(|| {
@@ -62,11 +53,11 @@ pub fn bigdecimal_add(bench: &mut Bencher) {
 }
 
 #[inline(always)]
-fn sub(x: &BigDecimal, y: &BigDecimal) -> BigDecimal {
-    x - y
+fn sub(x: &Decimal, y: &Decimal) -> Decimal {
+    *x - *y
 }
 
-pub fn bigdecimal_sub(bench: &mut Bencher) {
+pub fn decimal_rs_sub(bench: &mut Bencher) {
     let x = parse("12345678901.23456789");
     let y = parse("123456.7890123456789");
     bench.iter(|| {
@@ -75,11 +66,11 @@ pub fn bigdecimal_sub(bench: &mut Bencher) {
 }
 
 #[inline(always)]
-fn mul(x: &BigDecimal, y: &BigDecimal) -> BigDecimal {
-    x * y
+fn mul(x: &Decimal, y: &Decimal) -> Decimal {
+    (*x) * (*y)
 }
 
-pub fn bigdecimal_mul(bench: &mut Bencher) {
+pub fn decimal_rs_mul(bench: &mut Bencher) {
     let x = parse("12345678901.23456789");
     let y = parse("123456.7890123456789");
     bench.iter(|| {
@@ -88,11 +79,11 @@ pub fn bigdecimal_mul(bench: &mut Bencher) {
 }
 
 #[inline(always)]
-fn div(x: &BigDecimal, y: &BigDecimal) -> BigDecimal {
-    x / y
+fn div(x: &Decimal, y: &Decimal) -> Decimal {
+    *x / *y
 }
 
-pub fn bigdecimal_div(bench: &mut Bencher) {
+pub fn decimal_rs_div(bench: &mut Bencher) {
     let x = parse("12345678901.23456789");
     let y = parse("123456.7890123456789");
     bench.iter(|| {

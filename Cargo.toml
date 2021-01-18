@@ -10,15 +10,8 @@ pgnumeric = "0.2.1"
 rust_decimal = "1.9.0"
 num-traits = "0.2.14"
 bigdecimal = "0.2.0"
+decimal-rs = { git = "ssh://git@cod-git.sics.com/liweichao/decimal-rs.git" }
 
 [[bench]]
-name = "pgnumeric"
-harness = false
-
-[[bench]]
-name = "rust_decimal"
-harness = false
-
-[[bench]]
-name = "bigdecimal"
+name = "benchmark"
 harness = false
