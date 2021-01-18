@@ -15,7 +15,8 @@
 //! decimal-rs benchmark
 
 use bencher::{black_box, Bencher};
-use decimal_rs::Decimal;
+use decimal_rs::{Decimal, DecimalConvertError};
+use std::convert::TryInto;
 
 #[inline(always)]
 fn parse(s: &str) -> Decimal {
@@ -28,16 +29,16 @@ pub fn decimal_rs_parse(bench: &mut Bencher) {
     })
 }
 
-// #[inline(always)]
-// fn try_from<T: TryInto<Decimal, Error = DecimalConvertError>>(val: T) -> Decimal {
-//     val.try_into().unwrap()
-// }
-//
-// fn decimal_rs_from_f64(bench: &mut Bencher) {
-//     bench.iter(|| {
-//         let _n = try_from(black_box(12345678901.23456789_f64));
-//     })
-// }
+#[inline(always)]
+fn try_from<T: TryInto<Decimal, Error = DecimalConvertError>>(val: T) -> Decimal {
+    val.try_into().unwrap()
+}
+
+pub fn decimal_rs_from_f64(bench: &mut Bencher) {
+    bench.iter(|| {
+        let _n = try_from(black_box(12345678901.23456789_f64));
+    })
+}
 
 #[inline(always)]
 fn add(x: &Decimal, y: &Decimal) -> Decimal {
