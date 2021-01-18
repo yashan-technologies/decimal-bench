@@ -117,7 +117,7 @@ fn pgnumeric_into_f32(bench: &mut Bencher) {
 fn pgnumeric_into_f64(bench: &mut Bencher) {
     let val = pgnumeric_parse("1.234567890123456789e10");
     bench.iter(|| {
-        let _n: f32 = pgnumeric_into(black_box(&val));
+        let _n: f64 = pgnumeric_into(black_box(&val));
     })
 }
 
