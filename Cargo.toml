@@ -1,0 +1,13 @@
+[package]
+name = "decimal-benches"
+version = "0.1.0"
+authors = ["David Li <davidli2010@foxmail.com>"]
+edition = "2018"
+
+[dev-dependencies]
+pgnumeric = "0.2.1"
+bencher = "0.1.5"
+
+[[bench]]
+name = "pgnumeric"
+harness = false
