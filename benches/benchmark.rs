@@ -38,6 +38,7 @@ benchmark_group!(
 benchmark_group!(
     decimal_rs_benches,
     decimal_rs_parse,
+    decimal_rs_into_f64,
     decimal_rs_from_f64,
     decimal_rs_add,
     decimal_rs_sub,
