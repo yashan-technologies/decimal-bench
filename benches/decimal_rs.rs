@@ -16,7 +16,7 @@
 
 use bencher::{black_box, Bencher};
 use decimal_rs::{Decimal, DecimalConvertError};
-use std::convert::TryInto;
+use std::convert::{TryFrom, TryInto};
 
 #[inline(always)]
 fn parse(s: &str) -> Decimal {
@@ -44,6 +44,13 @@ pub fn decimal_rs_into_f64(bench: &mut Bencher) {
     let val = parse("12345678901.23456789");
     bench.iter(|| {
         let _n: f64 = black_box(&val).into();
+    })
+}
+
+pub fn decimal_rs_into_u64(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = u64::try_from(black_box(&val)).unwrap();
     })
 }
 

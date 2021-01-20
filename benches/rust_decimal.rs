@@ -36,6 +36,13 @@ pub fn rust_decimal_into_f64(bench: &mut Bencher) {
     })
 }
 
+pub fn rust_decimal_into_u64(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n: u64 = black_box(&val).to_u64().unwrap();
+    })
+}
+
 pub fn rust_decimal_from_f64(bench: &mut Bencher) {
     bench.iter(|| {
         let _n = Decimal::from_f64(black_box(12345678901.23456789_f64)).unwrap();

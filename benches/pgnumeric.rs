@@ -41,6 +41,13 @@ pub fn pgnumeric_into_f64(bench: &mut Bencher) {
     })
 }
 
+pub fn pgnumeric_into_u64(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n: u64 = into(black_box(&val));
+    })
+}
+
 #[inline(always)]
 fn try_from<T: TryInto<NumericBuf, Error = NumericTryFromError>>(val: T) -> NumericBuf {
     val.try_into().unwrap()

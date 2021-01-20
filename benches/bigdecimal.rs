@@ -37,6 +37,13 @@ pub fn bigdecimal_into_f64(bench: &mut Bencher) {
     })
 }
 
+pub fn bigdecimal_into_u64(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n: u64 = black_box(&val).to_u64().unwrap();
+    })
+}
+
 #[inline(always)]
 fn try_from<T: TryInto<BigDecimal, Error = ParseBigDecimalError>>(val: T) -> BigDecimal {
     val.try_into().unwrap()
