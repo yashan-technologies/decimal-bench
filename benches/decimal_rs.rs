@@ -29,6 +29,13 @@ pub fn decimal_rs_parse(bench: &mut Bencher) {
     })
 }
 
+pub fn decimal_rs_to_string(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = black_box(&val).to_string();
+    })
+}
+
 #[inline(always)]
 fn try_from<T: TryInto<Decimal, Error = DecimalConvertError>>(val: T) -> Decimal {
     val.try_into().unwrap()

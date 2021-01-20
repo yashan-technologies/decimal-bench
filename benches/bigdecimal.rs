@@ -30,6 +30,13 @@ pub fn bigdecimal_parse(bench: &mut Bencher) {
     })
 }
 
+pub fn bigdecimal_to_string(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = black_box(&val).to_string();
+    })
+}
+
 pub fn bigdecimal_into_f64(bench: &mut Bencher) {
     let val = parse("12345678901.23456789");
     bench.iter(|| {

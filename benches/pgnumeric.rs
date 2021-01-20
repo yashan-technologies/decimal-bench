@@ -29,6 +29,13 @@ pub fn pgnumeric_parse(bench: &mut Bencher) {
     })
 }
 
+pub fn pgnumeric_to_string(bench: &mut Bencher) {
+    let val = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = black_box(&val).to_string();
+    })
+}
+
 #[inline(always)]
 fn into<'a, T: TryFrom<&'a NumericBuf, Error = NumericTryFromError>>(val: &'a NumericBuf) -> T {
     TryFrom::try_from(val).unwrap()

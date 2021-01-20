@@ -27,6 +27,7 @@ use bencher::{benchmark_group, benchmark_main};
 benchmark_group!(
     bigdecimal_benches,
     bigdecimal_parse,
+    bigdecimal_to_string,
     bigdecimal_into_f64,
     bigdecimal_from_f64,
     bigdecimal_into_u64,
@@ -39,6 +40,7 @@ benchmark_group!(
 benchmark_group!(
     decimal_rs_benches,
     decimal_rs_parse,
+    decimal_rs_to_string,
     decimal_rs_into_f64,
     decimal_rs_from_f64,
     decimal_rs_into_u64,
@@ -51,6 +53,7 @@ benchmark_group!(
 benchmark_group!(
     pgnumeric_benches,
     pgnumeric_parse,
+    pgnumeric_to_string,
     pgnumeric_into_f64,
     pgnumeric_from_f64,
     pgnumeric_into_u64,
@@ -63,6 +66,7 @@ benchmark_group!(
 benchmark_group!(
     rust_decimal_benches,
     rust_decimal_parse,
+    rust_decimal_to_string,
     rust_decimal_into_f64,
     rust_decimal_from_f64,
     rust_decimal_into_u64,
