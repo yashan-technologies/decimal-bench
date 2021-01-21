@@ -50,7 +50,7 @@ pub fn decimal_rs_from_f64(bench: &mut Bencher) {
 pub fn decimal_rs_into_f64(bench: &mut Bencher) {
     let val = parse("12345678901.23456789");
     bench.iter(|| {
-        let _n: f64 = black_box(&val).into();
+        let _n: f64 = black_box(black_box(&val).into());
     })
 }
 
