@@ -1,6 +1,6 @@
 # decimal-bench
 
-Decimal implementations benchmark.
+Benchmark for decimal implementations written in Rust.
 
 ## License
 
