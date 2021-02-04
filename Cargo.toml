@@ -1,5 +1,5 @@
 [package]
-name = "decimal-benches"
+name = "decimal-bench"
 version = "0.1.0"
 authors = ["David Li <davidli2010@foxmail.com>"]
 edition = "2018"
@@ -7,10 +7,10 @@ edition = "2018"
 [dev-dependencies]
 bencher = "0.1.5"
 pgnumeric = "0.2.1"
-rust_decimal = "1.9.0"
-num-traits = "0.2.14"
+rust_decimal = "1.10.1"
 bigdecimal = "0.2.0"
-decimal-rs = { git = "ssh://git@cod-git.sics.com/liweichao/decimal-rs.git" }
+decimal-rs = "0.1.0"
+num-traits = "0.2.14"
 
 [[bench]]
 name = "benchmark"
