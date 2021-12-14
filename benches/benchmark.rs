@@ -35,6 +35,7 @@ benchmark_group!(
     bigdecimal_sub,
     bigdecimal_mul,
     bigdecimal_div,
+    bigdecimal_sqrt,
 );
 
 benchmark_group!(
@@ -48,6 +49,7 @@ benchmark_group!(
     decimal_rs_sub,
     decimal_rs_mul,
     decimal_rs_div,
+    decimal_rs_sqrt,
 );
 
 benchmark_group!(
@@ -61,6 +63,7 @@ benchmark_group!(
     pgnumeric_sub,
     pgnumeric_mul,
     pgnumeric_div,
+    pgnumeric_sqrt,
 );
 
 benchmark_group!(
@@ -74,6 +77,7 @@ benchmark_group!(
     rust_decimal_sub,
     rust_decimal_mul,
     rust_decimal_div,
+    rust_decimal_sqrt,
 );
 
 benchmark_main!(

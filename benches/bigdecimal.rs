@@ -113,3 +113,10 @@ pub fn bigdecimal_div(bench: &mut Bencher) {
         let _n = div(black_box(&x), black_box(&y));
     })
 }
+
+pub fn bigdecimal_sqrt(bench: &mut Bencher) {
+    let x = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = black_box(&x).sqrt().unwrap();
+    })
+}

@@ -16,7 +16,7 @@
 
 use bencher::{black_box, Bencher};
 use num_traits::{FromPrimitive, ToPrimitive};
-use rust_decimal::Decimal;
+use rust_decimal::{Decimal, MathematicalOps};
 
 #[inline(always)]
 fn parse(s: &str) -> Decimal {
@@ -105,5 +105,12 @@ pub fn rust_decimal_div(bench: &mut Bencher) {
     let y = parse("123456.7890123456789");
     bench.iter(|| {
         let _n = div(black_box(&x), black_box(&y));
+    })
+}
+
+pub fn rust_decimal_sqrt(bench: &mut Bencher) {
+    let x = parse("12345678901.23456789");
+    bench.iter(|| {
+        let _n = black_box(&x).sqrt().unwrap();
     })
 }
