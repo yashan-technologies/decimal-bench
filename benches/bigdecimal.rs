@@ -14,6 +14,8 @@
 
 //! bigdecimal benchmark
 
+#![allow(clippy::excessive_precision)]
+
 use bencher::{black_box, Bencher};
 use bigdecimal::{BigDecimal, ParseBigDecimalError};
 use num_traits::ToPrimitive;
@@ -59,6 +61,22 @@ fn try_from<T: TryInto<BigDecimal, Error = ParseBigDecimalError>>(val: T) -> Big
 pub fn bigdecimal_from_f64(bench: &mut Bencher) {
     bench.iter(|| {
         let _n = try_from(black_box(12345678901.23456789_f64));
+    })
+}
+
+pub fn bigdecimal_cmp(bench: &mut Bencher) {
+    let x = parse("12345678901.23456789");
+    let y = parse("123456.7890123456789");
+    bench.iter(|| {
+        let _n = black_box(x > y);
+    })
+}
+
+pub fn bigdecimal_cmp2(bench: &mut Bencher) {
+    let x = parse("12345678901.234567");
+    let y = parse("123456.789012");
+    bench.iter(|| {
+        let _n = black_box(x > y);
     })
 }
 

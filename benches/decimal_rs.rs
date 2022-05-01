@@ -14,6 +14,8 @@
 
 //! decimal-rs benchmark
 
+#![allow(clippy::excessive_precision)]
+
 use bencher::{black_box, Bencher};
 use decimal_rs::{Decimal, DecimalConvertError};
 use std::convert::{TryFrom, TryInto};
@@ -58,6 +60,22 @@ pub fn decimal_rs_into_u64(bench: &mut Bencher) {
     let val = parse("12345678901.23456789");
     bench.iter(|| {
         let _n = u64::try_from(black_box(&val)).unwrap();
+    })
+}
+
+pub fn decimal_rs_cmp(bench: &mut Bencher) {
+    let x = parse("12345678901.23456789");
+    let y = parse("123456.7890123456789");
+    bench.iter(|| {
+        let _n = black_box(x > y);
+    })
+}
+
+pub fn decimal_rs_cmp2(bench: &mut Bencher) {
+    let x = parse("12345678901.234567");
+    let y = parse("123456.789012");
+    bench.iter(|| {
+        let _n = black_box(x > y);
     })
 }
 

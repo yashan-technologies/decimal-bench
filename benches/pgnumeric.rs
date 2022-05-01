@@ -14,6 +14,8 @@
 
 //! pgnumeric benchmark
 
+#![allow(clippy::excessive_precision)]
+
 use bencher::{black_box, Bencher};
 use pgnumeric::{NumericBuf, NumericTryFromError};
 use std::convert::{TryFrom, TryInto};
@@ -63,6 +65,22 @@ fn try_from<T: TryInto<NumericBuf, Error = NumericTryFromError>>(val: T) -> Nume
 pub fn pgnumeric_from_f64(bench: &mut Bencher) {
     bench.iter(|| {
         let _n = try_from(black_box(12345678901.23456789_f64));
+    })
+}
+
+pub fn pgnumeric_cmp(bench: &mut Bencher) {
+    let x = parse("12345678901.23456789");
+    let y = parse("123456.7890123456789");
+    bench.iter(|| {
+        let _n = black_box(x > y);
+    })
+}
+
+pub fn pgnumeric_cmp2(bench: &mut Bencher) {
+    let x = parse("12345678901.234567");
+    let y = parse("123456.789012");
+    bench.iter(|| {
+        let _n = black_box(x > y);
     })
 }
 
