@@ -1,4 +1,4 @@
-// Copyright 2021 CoD Technologies Corp.
+// Copyright 2021-2022 CoD Technologies Corp.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,13 @@
 
 mod bigdecimal;
 mod decimal_rs;
+mod fast_decimal;
 mod pgnumeric;
 mod rust_decimal;
 
 use crate::bigdecimal::*;
 use crate::decimal_rs::*;
+use crate::fast_decimal::*;
 use crate::pgnumeric::*;
 use crate::rust_decimal::*;
 
@@ -88,9 +90,12 @@ benchmark_group!(
     rust_decimal_sqrt,
 );
 
+benchmark_group!(fast_decimal_benches, fast_decimal_cmp, fast_decimal_cmp2,);
+
 benchmark_main!(
     bigdecimal_benches,
     decimal_rs_benches,
     pgnumeric_benches,
-    rust_decimal_benches
+    rust_decimal_benches,
+    fast_decimal_benches,
 );
