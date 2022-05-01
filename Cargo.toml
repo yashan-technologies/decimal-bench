@@ -7,9 +7,9 @@ edition = "2018"
 [dev-dependencies]
 bencher = "0.1.5"
 pgnumeric = "0.2.1"
-rust_decimal = { version = "1.18.0", features = ["maths"] }
+rust_decimal = { version = "1.23.1", features = ["maths"] }
 bigdecimal = "0.3.0"
-decimal-rs = "0.1.24"
+decimal-rs = "0.1.36"
 num-traits = "0.2.14"
 
 [[bench]]
