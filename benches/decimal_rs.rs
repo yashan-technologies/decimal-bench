@@ -137,3 +137,8 @@ pub fn decimal_rs_sqrt(bench: &mut Bencher) {
         let _n = black_box(&x).sqrt().unwrap();
     })
 }
+
+pub fn decimal_rs_trunc(bench: &mut Bencher) {
+    let v = parse("123456.7890123456789");
+    bench.iter(|| black_box(v.trunc(5)))
+}

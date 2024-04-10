@@ -142,3 +142,8 @@ pub fn pgnumeric_sqrt(bench: &mut Bencher) {
         let _n = black_box(&x).sqrt();
     })
 }
+
+pub fn pgnumeric_trunc(bench: &mut Bencher) {
+    let v = parse("123456.7890123456789");
+    bench.iter(|| black_box(v.trunc(5)))
+}
